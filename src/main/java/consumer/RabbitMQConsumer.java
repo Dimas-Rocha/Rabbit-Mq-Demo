@@ -9,8 +9,9 @@ import org.springframework.stereotype.Service;
 public class RabbitMQConsumer {
     private static final Logger LOGGER = LoggerFactory.getLogger(RabbitMQConsumer.class);
 
-    public void consume(MessageDTOmessage){
+    public void consume(MessageDTO message){
         LOGGER.info("Mensagem recebida: {}", message);
+
         processMessage(message);
 
     }

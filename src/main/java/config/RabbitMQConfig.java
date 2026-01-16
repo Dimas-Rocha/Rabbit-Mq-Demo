@@ -33,7 +33,10 @@ public class RabbitMQConfig {
     }
     @Bean
     public Binding binding() {
-        return BindingBuilder.bind(queue()).to(exchange()).with(routingKey);
+        return BindingBuilder
+                .bind(queue())
+                .to(exchange())
+                .with(routingKey);
     }
 
     //Converter para json

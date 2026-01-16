@@ -2,6 +2,7 @@ package controller;
 
 import dto.MessageDTO;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -18,9 +19,9 @@ public class MessageController {
     public MessageController(RabbitMQProducer producer) {
         this.producer = producer;
     }
-
+    @PostMapping
     public ResponseEntity<String> sendMessage(@RequestBody MessageRequest request){
-       MessageDTO messageDTO = new MessageDTO(
+       MessageDTO message = new MessageDTO(
                UUID.randomUUID().toString(),
                request.getMessage(),
                LocalDateTime.now(),
@@ -30,7 +31,7 @@ public class MessageController {
        return ResponseEntity.ok("Mensagem enviada para filial!");
     }
 
-    public static class MesssageRequest{
+    public static class MessageRequest{
         private String message;
 
         public String getMessage() {
